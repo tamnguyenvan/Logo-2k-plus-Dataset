@@ -5,7 +5,7 @@ from torch.autograd import Variable
 from core import resnet
 import numpy as np
 from core.anchors import generate_default_anchor_maps, hard_nms
-from config import CAT_NUM, PROPOSAL_NUM
+from config import CAT_NUM, PROPOSAL_NUM, NUM_CLASSES
 
 
 class ProposalNet(nn.Module):
@@ -30,7 +30,7 @@ class ProposalNet(nn.Module):
         return torch.cat((t1, t2, t3), dim=1)
 
 class aug_net(nn.Module):
-    def __init__(self, NUM_CLASSES, M=32, net = None):
+    def __init__(self, num_classes=NUM_CLASSES, M=32, net = None):
         super(aug_net, self).__init__()
         self.num_classes = NUM_CLASSES
         self.M = M
